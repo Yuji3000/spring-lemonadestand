@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Table(name="order_table")
 @Entity
@@ -27,13 +28,21 @@ public class Order {
 	private double total;
 	
 	@OneToMany(mappedBy = "order")
+	@ToString.Exclude
 	private List<Lemonade> lemonades;
 	
 	@ManyToOne
 	@JoinColumn
+	@ToString.Exclude
 	private Customer customer;
 	
 	@ManyToOne
 	@JoinColumn
+	@ToString.Exclude
 	private LemonadeStand lemonadeStand;
+	
+//	@Override
+//	public String toString() {
+//	    return "Order{id=" + id + ", orderTotal=" + total + ", lemonades=" + lemonades +  ", customer=" + customer + ", lemonadeStand=" + lemonadeStand + "}";
+//	}
 }

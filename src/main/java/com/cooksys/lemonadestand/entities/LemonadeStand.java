@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
@@ -23,5 +24,6 @@ public class LemonadeStand {
 	private String name;
 	
 	@OneToMany(mappedBy = "lemonadeStand")
+	@ToString.Exclude
 	private List<Order> orders;
 }

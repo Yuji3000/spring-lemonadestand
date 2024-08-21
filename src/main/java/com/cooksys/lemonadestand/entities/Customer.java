@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
@@ -27,5 +28,9 @@ public class Customer {
 	private String phoneNumber;
 	
 	@OneToMany(mappedBy = "customer")
+	@ToString.Exclude
 	private List<Order> orders;
+	
+
+
 }

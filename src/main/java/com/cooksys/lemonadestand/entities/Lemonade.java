@@ -8,6 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
@@ -36,6 +37,7 @@ public class Lemonade {
 	
 	@ManyToOne
 	@JoinColumn
+	@ToString.Exclude
 	private Order order;
 
 	
