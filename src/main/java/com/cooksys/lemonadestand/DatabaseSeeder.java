@@ -14,15 +14,12 @@ public class DatabaseSeeder implements CommandLineRunner {
 	
 	private LemonadeRepository lemonadeRepository;
 	
-	public DatabaseSeeder(LemonadeRepository lemonadeRepository) {
-		this.lemonadeRepository = lemonadeRepository;
-	}
 	
 	@Override
 	public void run(String... args) throws Exception {
 		Lemonade lemonade = new Lemonade();
 		lemonade.setLemonJuice(3.25);
-		lemonade.setWater(2.5);
+		lemonade.setWater(2.50);
 		lemonade.setSugar(1.25);
 		lemonade.setIceCubes(5);
 		lemonade.setPrice(4.50);
@@ -30,5 +27,4 @@ public class DatabaseSeeder implements CommandLineRunner {
 		lemonadeRepository.saveAndFlush(lemonade);
 		System.out.println(lemonadeRepository.findAll());
 	}
-
 }
