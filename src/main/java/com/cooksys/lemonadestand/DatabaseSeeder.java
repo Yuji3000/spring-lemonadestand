@@ -27,7 +27,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 	private OrderRepository orderRepository;
 
 	@Override
-	@Transactional
 	public void run(String... args) throws Exception {
 		// Create a Lemonade
 		Lemonade lemonade = new Lemonade();
@@ -36,7 +35,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 		lemonade.setSugar(1.25);
 		lemonade.setIceCubes(5);
 		lemonade.setPrice(4.50);
-
 		lemonadeRepository.saveAndFlush(lemonade);
 
 		// Create a Customer
@@ -53,13 +51,19 @@ public class DatabaseSeeder implements CommandLineRunner {
 		// Create an Order
 		Order order = new Order();
 		order.setTotal(5.0);
+        order.setCustomer(customer);
+        order.setLemonadeStand(lemonadeStand);
+        order.setLemonades(List.of(lemonade));
+
 		orderRepository.saveAndFlush(order);
 
+		// Set Lemonade Order
+//		lemonade.setOrder(order);		
+		
 		// Output all the data to confirm seeding
 		System.out.println(lemonadeRepository.findAll());
 		System.out.println(customerRepository.findAll());
 		System.out.println(lemonadeStandRepository.findAll());
 		System.out.println(orderRepository.findAll());
-
 	}
 }
