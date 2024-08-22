@@ -4,12 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cooksys.lemonadestand.entities.Lemonade;
+import com.cooksys.lemonadestand.model.LemonadeRequestDto;
+import com.cooksys.lemonadestand.model.LemonadeResponseDto;
 
 @Service
 public interface LemonadeService {
 
-	List<Lemonade> getAllLemonades();
+	List<LemonadeResponseDto> getAllLemonades();
+
+	LemonadeResponseDto createLemonade(LemonadeRequestDto lemonadeRequestDto);
+
+	LemonadeResponseDto getLemonadeById(Long id);
 	
 	
 
