@@ -3,6 +3,7 @@ package com.cooksys.lemonadestand.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,5 +46,10 @@ public class LemonadeController {
 	public LemonadeResponseDto updateLemonade(@PathVariable Long id, @RequestBody LemonadeRequestDto lemonadeRequestDto) {
 		
 		return lemonadeService.updateLemonade(id, lemonadeRequestDto);
+	}
+	
+	@DeleteMapping("/{id}")
+	public LemonadeResponseDto deleteLemonade(@PathVariable Long id) {
+		return lemonadeService.deleteLemonade(id);
 	}
 }

@@ -23,10 +23,6 @@ public class LemonadeServiceImpl implements LemonadeService {
 	private LemonadeRepository lemonadeRepository;
 	private LemonadeMapper lemonadeMapper;
 
-	@Override
-	public List<LemonadeResponseDto> getAllLemonades() {
-		return lemonadeMapper.entitiesToResponseDtos(lemonadeRepository.findAll());
-	}
 
 	// Helper Methods
 	private void setLemonadePrice(Lemonade lemonade) {
@@ -55,6 +51,10 @@ public class LemonadeServiceImpl implements LemonadeService {
 	//
 	
 	
+	@Override
+	public List<LemonadeResponseDto> getAllLemonades() {
+		return lemonadeMapper.entitiesToResponseDtos(lemonadeRepository.findAll());
+	}
 	
 	@Override
 	public LemonadeResponseDto createLemonade(LemonadeRequestDto lemonadeRequestDto) {
@@ -82,6 +82,13 @@ public class LemonadeServiceImpl implements LemonadeService {
 		setLemonadePrice(lemonadeToUpdate);
 		
 		return lemonadeMapper.entityToResponseDto(lemonadeRepository.saveAndFlush(lemonadeToUpdate));
+	}
+
+	@Override
+	public LemonadeResponseDto deleteLemonade(Long id) {
+		Lemonade lemonadeToDelete = getLemonade(id);
+		lemonadeRepository.delete(lemonadeToDelete);
+		return lemonadeMapper.entityToResponseDto(lemonadeToDelete);
 	}
 
 	
